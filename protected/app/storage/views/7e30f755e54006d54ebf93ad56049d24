@@ -1,0 +1,6 @@
+<div class="container">
+			<div class="box information">
+				<h2 class="information-title"><?php echo $page->title; ?></h2>
+				<?php echo $page->content; ?>
+			</div>
+		</div>

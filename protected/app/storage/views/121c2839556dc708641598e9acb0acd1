@@ -1,0 +1,109 @@
+<div class="page-content row">
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-title">
+        <h3> <?php echo $pageTitle; ?> <small><?php echo $pageNote; ?></small></h3>
+      </div>
+      <ul class="breadcrumb">
+        <li><a href="<?php echo URL::to('config/dashboard'); ?>"><?php echo Lang::get('core.home'); ?></a></li>
+		<li><a href="<?php echo URL::to('post?md='.$masterdetail["filtermd"]); ?>"><?php echo $pageTitle; ?></a></li>
+        <li class="active"> <?php echo Lang::get('core.detail'); ?> </li>
+      </ul>
+	 </div>  
+	 
+	 
+ 	<div class="page-content-wrapper">   
+	   <div class="toolbar-line">
+	   		<a href="<?php echo URL::to('post?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-default" title="<?php echo Lang::get('core.btn_back'); ?>"><i class="icon-table"></i>&nbsp;<?php echo Lang::get('core.btn_back'); ?></a>
+			<?php if($access['is_add'] ==1): ?>
+	   		<a href="<?php echo URL::to('post/add/'.$id.'?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-primary" title="<?php echo Lang::get('core.btn_edit'); ?>"><i class="icon-pencil3"></i>&nbsp;<?php echo Lang::get('core.btn_edit'); ?></a>
+			<?php endif; ?>  		   	  
+		</div>
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered" >
+		<tbody>	
+	
+					<tr>
+						<td width='30%' class='label-view text-right'>ID</td>
+						<td><?php echo $row->post_id; ?> </td>
+						
+					</tr>
+
+					<tr>
+						<td width='30%' class='label-view text-right'>Tên sản phẩm</td>
+						<td><?php echo $row->post_name; ?> </td>
+						
+					</tr>
+
+					<tr>
+						<td width='30%' class='label-view text-right'>Người tạo</td>
+						<td><?php echo SiteHelpers::getNameUser($row->customer_id); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Mã sản phẩm</td>
+						<td><?php echo $row->post_code; ?></td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Danh mục</td>
+						<td><?php echo SiteHelpers::getNameCat($row->post_category); ?></td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Giá</td>
+						<td><?php echo number_format($row->post_price,0,',','.'); ?> VNĐ </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Giá khuyến mãi</td>
+						<td><?php echo number_format($row->post_price_promotion,0,',','.'); ?> VNĐ </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Số điện thoại</td>
+						<td><?php echo $row->phone; ?> </td>
+						
+					</tr>
+
+					<tr>
+						<td width='30%' class='label-view text-right'>Hình sản phẩm</td>
+						<td>
+							<?php if($row->post_image != ""): ?>
+								<img src="<?php echo URL::to(''); ?>/uploads/post/thumb/<?php echo $row->post_image; ?>" />
+							<?php else: ?>
+								Không có hình ảnh
+							<?php endif; ?>
+						</td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Kích hoạt</td>
+						<td><?php if($row->active == 1): ?> Đã kích hoạt <?php else: ?> Chưa kích hoat <?php endif; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Trạng thái</td>
+						<td><?php if($row->status == 1): ?> Hiện <?php else: ?> Ẩn <?php endif; ?> </td>
+						
+					</tr>
+
+					<tr>
+						<td width='30%' class='label-view text-right'>Created</td>
+						<td><?php echo date('Y-m-d',$row->created); ?> </td>
+						
+					</tr>
+				
+		</tbody>	
+	</table>    
+	</div>
+	</div>
+</div>
+	  

@@ -1,0 +1,6 @@
+<div class="container">
+			<div class="box register">
+				<div class="group-name"><?php echo $page->title; ?></div>
+				<?php echo $page->content; ?>
+			</div>
+		</div>

@@ -1,0 +1,36 @@
+<div class="container">
+			<div class="box register">
+                <?php if(Session::has('message_changepass')): ?>
+                     <?php echo Session::get('message_changepass'); ?>
+                <?php endif; ?>
+                <ul class="parsley-error-list">
+                  <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <form  method="post" action="<?php echo URL::to('home/changepass'); ?>">
+                	<div class="group-name">Thay đổi mật khẩu</div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mật khẩu cũ</span>
+                      <input  type="password" class="form-control" name="password"  >
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mật khẩu mới</span>
+                      <input type="password" class="form-control" name="newpassword">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Nhập lại mật khẩu mới</span>
+                      <input type="password" class="form-control" name="confirmpassword">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mã bảo mật</span>
+                      <?php if(CNF_RECAPTCHA =='true'): ?> 
+
+                        <?php echo Form::captcha(array('theme' => 'white'));; ?>
+
+                      <?php endif; ?>
+                    </div>
+                  	<button type="submit" class="btn btn-default submit">Gửi</button>
+                </form>
+			</div>
+        </div><!-- container -->

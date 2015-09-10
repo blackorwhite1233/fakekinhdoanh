@@ -1,0 +1,36 @@
+<?php /**/ $menus = SiteHelpers::menus('top') /**/ ?>
+<div id="menu"><span>Menu</span>
+    <ul>
+      <li class="home"><a  title="Home" href="index-2.html"><span>Home</span></a></li>
+      <?php foreach ($menus as $menu): ?>
+
+          <li>
+            <a
+              <?php if($menu['menu_type'] =='external'): ?>
+                href="<?php echo URL::to($menu['module']); ?>" 
+              <?php else: ?>
+                href="<?php echo URL::to($menu['module']); ?>" 
+              <?php endif; ?>
+            ><?php echo $menu['menu_name']; ?></a>
+
+          <?php if(count($menu['childs']) > 0): ?>
+              <div>
+                <ul>
+                  <?php foreach($menu['childs'] as $menu2): ?>
+                    <li><a 
+                      <?php if($menu['menu_type'] =='external'): ?>
+                        href="<?php echo URL::to($menu2['module']); ?>" 
+                      <?php else: ?>
+                        href="<?php echo URL::to($menu2['module']); ?>" 
+                      <?php endif; ?>
+                    ><?php echo $menu2['menu_name']; ?></a></li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+          <?php endif; ?>
+          </li>
+      <?php endforeach; ?>  
+
+      
+    </ul>
+  </div>

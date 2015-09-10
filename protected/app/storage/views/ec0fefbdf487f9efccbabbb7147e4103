@@ -1,0 +1,8 @@
+<?php /**/ $advertise = SiteHelpers::getAdvertise(1) /**/ ?>
+                <?php if(count($advertise) >0): ?>
+                <?php foreach($advertise as $ad): ?>
+                <div class="box ads">
+                    <div><a href="<?php echo $ad->advertise_link; ?>"><img src="<?php echo URL::to(''); ?>/uploads/advertise/thumb/<?php echo $ad->image; ?>"></a></div>
+                </div><!-- ads -->
+                <?php endforeach; ?>
+                <?php endif; ?>

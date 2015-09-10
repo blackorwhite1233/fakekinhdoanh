@@ -1,0 +1,14 @@
+<?php /**/ $menus = SiteHelpers::menus('top') /**/ ?>
+<div class="links">
+                <a href="<?php echo URL::to(''); ?>">Trang chủ</a>
+                <?php foreach ($menus as $menu): ?>
+					<a
+		              <?php if($menu['menu_type'] =='external'): ?>
+		                href="<?php echo URL::to($menu['module']); ?>" 
+		              <?php else: ?>
+		                href="<?php echo URL::to($menu['module']); ?>" 
+		              <?php endif; ?>
+		            ><?php echo $menu['menu_name']; ?></a>
+                <?php endforeach; ?>
+                
+            </div><!-- links -->

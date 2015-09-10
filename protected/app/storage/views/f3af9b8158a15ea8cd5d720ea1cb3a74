@@ -1,0 +1,11 @@
+<?php /**/ $items = SiteHelpers::randomProduct() /**/ ?>
+<div class="box">
+        <div class="box-heading">Latest</div>
+        <div class="box-content">
+          <div class="box-product">
+          	<?php foreach($items as $item): ?>
+          		<?php echo SiteHelpers::templateProductSide($item); ?>
+          	<?php endforeach; ?>
+          </div>
+        </div>
+      </div>

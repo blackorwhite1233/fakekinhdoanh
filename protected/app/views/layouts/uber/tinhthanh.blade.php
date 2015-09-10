@@ -1,0 +1,11 @@
+{{--*/ $province = SiteHelpers::listTinhthanh() /*--}}
+<section id="searchby-provinces">
+    	<div class="container">
+        	<div class="searchby-provinces box clearfix">
+                <div class="box-heading"><span>Tỉnh thành phổ biến</span></div>
+                <div class="row">
+                    {{$province}}
+                </div>
+        	</div><!-- searchby-provinces -->
+        </div><!-- container -->
+    </section><!-- searchby-provinces -->

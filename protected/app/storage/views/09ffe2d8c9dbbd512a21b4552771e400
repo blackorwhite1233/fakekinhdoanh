@@ -1,0 +1,7 @@
+<div class="body_wrapper">
+			<div class="notice">
+				  <?php if(Session::has('message')): ?>
+				       <?php echo Session::get('message'); ?>
+				  <?php endif; ?>
+			</div>
+		</div>

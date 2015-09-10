@@ -1,0 +1,123 @@
+<?php echo HTML::script('sximo/themes/shop/js/jquery.jcombo.min.js'); ?>
+<div class="container">
+			<div class="box new-post">
+                <h2>Đăng tin miễn phí</h2>
+                <p>Vậy còn chờ gì ? Hãy tham gia ngay!</p>
+                <?php if(Session::has('message_dangtin')): ?>
+                     <?php echo Session::get('message_dangtin'); ?>
+                <?php endif; ?>
+                <ul class="parsley-error-list">
+                  <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <form method="post" action="<?php echo URL::to(''); ?>/home/dangtin" enctype="multipart/form-data">
+                	<div class="input-group">
+                      <label>Bạn là </label>
+                      <label class="type left"><span><input type="radio" name="post_typecustomer" <?php if($input['post_typecustomer'] == 1 && $input['post_typecustomer'] != ''): ?> checked <?php endif; ?> value="1"></span> Hành khách</label>
+                      <span> hay </span>
+                      <label class="type right"><span><input type="radio" name="post_typecustomer" <?php if($input['post_typecustomer'] == 0 && $input['post_typecustomer'] != ''): ?> checked <?php endif; ?> value="0"></span> Tài xế</label>
+                    </div>
+                    <div class="devide clearfix"></div>
+                    <div class="input-group">
+                      <label>Tiêu đề</label>
+                      <input type="text" value="<?php echo $input['post_subject']; ?>" name="post_subject" class="form-control">
+                    </div>
+                    <div class="devide clearfix"></div>
+                    <div class="place">
+                    	 <div class="input-group place">
+                          	<label>Nơi xuất phát</label>
+                          	<select id="city_from" name="post_provincefrom" class="form-control">
+                          	</select>
+                          	<select id="district_from" name="post_districtfrom" class="form-control">
+                          	</select>
+                          	<input type="text" class="form-control" value="<?php echo $input['post_addressfrom']; ?>" name="post_addressfrom" placeholder="Địa chỉ chi tiết">
+                      	</div>
+                    </div><!-- place -->
+                    <div class="devide clearfix"></div>
+                    <div class="place">
+                    	 <div class="input-group place">
+                          	<label>Nơi đến</label>
+                          	<select id="city_to" name="post_provinceto" class="form-control">
+                          	</select>
+                          	<select id="district_to" name="post_districtto" class="form-control">
+                          	</select>
+                          	<input type="text" class="form-control" value="<?php echo $input['post_addressto']; ?>" name="post_addressto" placeholder="Địa chỉ chi tiết">
+                      	</div>
+                    </div><!-- place -->
+                    <div class="devide clearfix"></div>
+                 	<div class="input-group date">
+                    <label>Ngày xuất phát</label>
+                        <input name="post_datestar" value="<?php echo $input['post_datestar']; ?>" type="text" data-beatpicker="true" data-beatpicker-format="['DD','MM','YYYY'],separator:'-'" data-beatpicker-position="['right','bottom']" data-beatpicker-disable="{from:[1970 , 2 , 2],to:[<?php echo date("Y"); ?> , <?php echo date("m"); ?>  , <?php echo (date("d") -1 ) ?> ]}"/>
+                	</div>
+                    <div class="devide clearfix"></div>
+                    <div class="column left">
+                   		<div class="input-group">
+                          <label>Giá</label>
+                          <input name="post_price" type="text"  class="form-control" value="<?php echo $input['post_price']; ?>">
+                        </div>
+                    </div><!-- column -->
+                    <div class="column right">
+                        <div class="input-group">
+                          <label>Loại xe</label>
+                          <input name="post_typecar" type="text" value="<?php echo $input['post_typecar']; ?>" class="form-control">
+                        </div>
+                    </div><!-- column -->
+                    <div class="devide clearfix"></div>
+                    <div class="column left">
+                   		<div class="input-group">
+                          <label>Ghi chú thêm</label>
+                          <textarea  name="post_note"><?php echo $input['post_note']; ?></textarea>
+                        </div>
+                    </div><!-- column -->
+                    <div class="column right">
+                   		<div class="input-group">
+                          <label>Đính kèm file</label>
+                          <input type="file" name="post_file1">
+                          <input type="file" name="post_file2">
+                        </div>
+                    </div><!-- column -->
+                    <div class="devide clearfix"></div>
+                    <div class="box info-user">
+                    	<label>Thông tin liên hệ</label>
+                    	<table>
+                        	<tr><td>Tên</td><td><input type="text" class="form-control" id="name" value="<?php echo $input['name']; ?>" name="name"></td></tr>
+                            <tr><td>Số điện thoại</td><td><input type="text" id="phone" class="form-control" value="<?php echo $input['phone']; ?>" name="phone"></td></tr>
+                            <tr><td>Địa chỉ</td><td><input type="text" id="address" class="form-control" value="<?php echo $input['address']; ?>" name="address"></td></tr>
+                        </table>
+                    </div><!-- info-user -->
+                    <div class="box info-user">
+                      <label>Mã bảo mật</label>
+                      <table>
+                          <tr><td> <?php if(CNF_RECAPTCHA =='true'): ?> 
+
+                        <?php echo Form::captcha(array('theme' => 'white'));; ?>
+
+                      <?php endif; ?></td></tr>
+                        </table>
+                    </div><!-- info-user -->
+                    <div class="devide clearfix"></div>
+                  	<button type="submit" class="btn btn-default submit">Đăng tin</button>
+                </form>
+			</div>
+        </div><!-- container -->
+        <?php echo HTML::style('sximo/themes/uber/css/BeatPicker.min.css'); ?>
+        <?php echo HTML::script('sximo/themes/uber/js/BeatPicker.min.js'); ?>
+        <script type="text/javascript">
+          $(document).ready(function() { 
+            $("#city_from").jCombo("<?php echo URL::to('ward/comboselect?filter=province:provinceid:name'); ?>",
+            {  selected_value : "<?php echo $input['post_provincefrom']; ?>" });
+            $("#city_from").on('change', function() {
+              var val = this.value ; 
+              $("#district_from").jCombo("<?php echo URL::to('ward/comboselect?filter=district:districtid:name:'); ?>"+val,
+            {  selected_value : "<?php echo $input['post_districtfrom']; ?>" });
+            });
+            $("#city_to").jCombo("<?php echo URL::to('ward/comboselect?filter=province:provinceid:name'); ?>",
+            {  selected_value : "<?php echo $input['post_provinceto']; ?>" });
+            $("#city_to").on('change', function() {
+              var val = this.value ; 
+              $("#district_to").jCombo("<?php echo URL::to('ward/comboselect?filter=district:districtid:name:'); ?>"+val,
+            {  selected_value : "<?php echo $input['post_districtto']; ?>" });
+            });
+          });
+        </script>

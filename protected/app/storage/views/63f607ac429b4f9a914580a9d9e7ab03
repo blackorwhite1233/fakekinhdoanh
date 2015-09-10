@@ -1,0 +1,127 @@
+<div class="page-content row">
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-title">
+        <h3> <?php echo $pageTitle; ?> <small><?php echo $pageNote; ?></small></h3>
+      </div>
+      <ul class="breadcrumb">
+        <li><a href="<?php echo URL::to('config/dashboard'); ?>"><?php echo Lang::get('core.home'); ?></a></li>
+		<li><a href="<?php echo URL::to('post?md='.$masterdetail["filtermd"]); ?>"><?php echo $pageTitle; ?></a></li>
+        <li class="active"> <?php echo Lang::get('core.detail'); ?> </li>
+      </ul>
+	 </div>  
+	 
+	 
+ 	<div class="page-content-wrapper">   
+	   <div class="toolbar-line">
+	   		<a href="<?php echo URL::to('post?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-default" title="<?php echo Lang::get('core.btn_back'); ?>"><i class="icon-table"></i>&nbsp;<?php echo Lang::get('core.btn_back'); ?></a>
+			<?php if($access['is_add'] ==1): ?>
+	   		<a href="<?php echo URL::to('post/add/'.$id.'?md='.$masterdetail["filtermd"].$trackUri); ?>" class="tips btn btn-xs btn-primary" title="<?php echo Lang::get('core.btn_edit'); ?>"><i class="icon-pencil3"></i>&nbsp;<?php echo Lang::get('core.btn_edit'); ?></a>
+			<?php endif; ?>  		   	  
+		</div>
+	<div class="table-responsive">
+	<table class="table table-striped table-bordered" >
+		<tbody>	
+	
+					<tr>
+						<td width='30%' class='label-view text-right'>ID</td>
+						<td><?php echo $row->post_id; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Loại KH</td>
+						<td><?php if($row->post_typecustomer == 0): ?> Khách hàng <?php else: ?> Tài xế <?php endif; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tiêu đề</td>
+						<td><?php echo $row->post_subject; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Nơi đi</td>
+						<td><?php echo $row->post_addressfrom .' - ' .SiteHelpers::getNameaddress($row->post_provincefrom,'province','provinceid').' - ' .SiteHelpers::getNameaddress($row->post_districtfrom,'district','districtid') ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Nơi đến</td>
+						<td><?php echo $row->post_addressto .' - ' .SiteHelpers::getNameaddress($row->post_provinceto,'province','provinceid').' - ' .SiteHelpers::getNameaddress($row->post_districtto,'district','districtid') ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Ngày xuất phát</td>
+						<td><?php echo date('d-m-Y',$row->post_datestar); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Post Price</td>
+						<td><?php echo number_format($row->post_price,0,',','.'); ?> VNĐ </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Post Typecar</td>
+						<td><?php echo $row->post_typecar; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Post Note</td>
+						<td><?php echo $row->post_note; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tập tin đính kèm 1</td>
+						<td><?php echo $row->post_file1; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tập tin đính kèm 2</td>
+						<td><?php echo $row->post_file2; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tên</td>
+						<td><?php echo $row->name; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Điện thoại</td>
+						<td><?php echo $row->phone; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Địa chỉ</td>
+						<td><?php echo $row->address; ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Created</td>
+						<td><?php echo date('Y-m-d',$row->created); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Trạng thái</td>
+						<td><?php if($row->status == 1): ?> <?php echo Lang::get('core.enable'); ?>  <?php else: ?> <?php echo Lang::get('core.disable'); ?>  <?php endif; ?>  </td>
+						
+					</tr>
+				
+		</tbody>	
+	</table>    
+	</div>
+	</div>
+</div>
+	  

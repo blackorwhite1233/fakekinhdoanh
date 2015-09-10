@@ -1,0 +1,48 @@
+
+    <div class="container">
+      <div class="box register">
+                <?php if(Session::has('message_contact')): ?>
+                     <?php echo Session::get('message_contact'); ?>
+                <?php endif; ?>
+                <ul class="parsley-error-list">
+                  <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <form  method="post" action="<?php echo URL::to(''); ?>/home/contactform">
+                  <div class="group-name">Thông tin liên hệ</div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Họ tên</span>
+                      <input  type="text" class="form-control" value="<?php echo $input['name']; ?>" name="name"  >
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Email</span>
+                      <input type="text" class="form-control" value="<?php echo $input['email']; ?>" name="email">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Số điện thoại</span>
+                      <input type="text" class="form-control" value="<?php echo $input['phone']; ?>" name="phone">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Tiêu đề</span>
+                      <input type="text" class="form-control" value="<?php echo $input['subject']; ?>" name="subject">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Nội dung</span>
+                      <textarea style="width: 98%;" rows="10" cols="40" name="content"><?php echo $input['content']; ?></textarea>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mã bảo mật</span>
+                      <?php if(CNF_RECAPTCHA =='true'): ?> 
+
+                        <?php echo Form::captcha(array('theme' => 'white'));; ?>
+
+                      <?php endif; ?>
+                    </div>
+                    <button type="submit" class="btn btn-default submit">Gửi</button>
+                </form>
+      </div>
+        </div><!-- container -->
+
+
+

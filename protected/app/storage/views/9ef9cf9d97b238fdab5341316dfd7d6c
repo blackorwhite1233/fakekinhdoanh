@@ -1,0 +1,21 @@
+
+<div class="container">
+            <div id="wrap-content">
+                <div class="box thread-box guest">
+                    <div class="box-heading"><span><?php echo $province->name; ?></span></div>
+                    <ul>
+                    <?php foreach($data as $item): ?>
+                        <?php echo SiteHelpers::templatePost($item); ?>
+                    <?php endforeach; ?>
+                    </ul>
+                </div><!-- guest-list -->
+                <div class="pages">
+                    <?php echo $pagination->appends(array("page"=>$page,"province"=>$order['province']))->links('pagination_site'); ?>
+                </div><!-- pages -->
+            </div><!-- wrap-content -->
+            
+
+        </div><!-- container -->
+
+
+

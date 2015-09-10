@@ -1,0 +1,205 @@
+
+  <div class="page-content row">
+    <!-- Page header -->
+    <div class="page-header">
+      <div class="page-title">
+        <h3> <?php echo $pageTitle; ?> <small><?php echo $pageNote; ?></small></h3>
+      </div>
+      <ul class="breadcrumb">
+        <li><a href="<?php echo URL::to('dashboard'); ?>"><?php echo Lang::get('core.home'); ?></a></li>
+		<li><a href="<?php echo URL::to('post?md='.$filtermd); ?>"><?php echo $pageTitle; ?></a></li>
+        <li class="active"><?php echo Lang::get('core.addedit'); ?> </li>
+      </ul>
+	  	  
+    </div>
+ 
+ 	<div class="page-content-wrapper">
+	<div class="panel-default panel">
+		<div class="panel-body">
+		<?php if(Session::has('message')): ?>	  
+			   <?php echo Session::get('message'); ?>
+		<?php endif; ?>	
+		<ul class="parsley-error-list">
+			<?php foreach($errors->all() as $error): ?>
+				<li><?php echo $error; ?></li>
+			<?php endforeach; ?>
+		</ul>
+		 <?php echo Form::open(array('url'=>'post/save/'.SiteHelpers::encryptID($row['post_id']).'?md='.$filtermd.$trackUri, 'class'=>'form-horizontal','files' => true , 'parsley-validate'=>'','novalidate'=>' ')); ?>
+				<div class="col-md-12">
+						<fieldset><legend> Bảng tin</legend>
+									  <?php echo Form::hidden('post_id', $row['post_id'],array('class'=>'form-control', 'placeholder'=>'',   )); ?> 
+								  <div class="form-group  " >
+									<label for="Post Typecustomer" class=" control-label col-md-4 text-left"> <?php echo Lang::get('core.table_type_customer'); ?> </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php if($row['post_typecustomer'] == 0): ?> Khách hàng <?php else: ?> Tài xế <?php endif; ?>" class="form-control" /> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Subject" class=" control-label col-md-4 text-left"> Tiêu đề </label>
+									<div class="col-md-6">
+										<input type="text" readonly value="<?php echo $row['post_subject']; ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Provincefrom" class=" control-label col-md-4 text-left"> Nơi đi </label>
+									<div class="col-md-6">
+										<input type="text" readonly value="<?php echo $row['post_addressfrom'] .' - ' .SiteHelpers::getNameaddress($row['post_provincefrom'],'province','provinceid').' - ' .SiteHelpers::getNameaddress($row['post_districtfrom'],'district','districtid') ?>" class="form-control" />
+									  
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Districtfrom" class=" control-label col-md-4 text-left"> Nơi đến </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php echo $row['post_addressto'] .' - ' .SiteHelpers::getNameaddress($row['post_provinceto'],'province','provinceid').' - ' .SiteHelpers::getNameaddress($row['post_districtto'],'district','districtid') ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Addressfrom" class=" control-label col-md-4 text-left"> Ngày xuất phát </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php echo date('d-m-Y',$row['post_datestar']); ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Provinceto" class=" control-label col-md-4 text-left"> Giá </label>
+									<div class="col-md-6">
+										<input type="text" readonly value="<?php echo number_format($row['post_price'],0,',','.'); ?> VNĐ" class="form-control" />
+									 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post Districtto" class=" control-label col-md-4 text-left"> Loại xe </label>
+									<div class="col-md-6">
+										<input type="text" readonly value="<?php echo $row['post_typecar']; ?>" class="form-control" />
+			
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  
+								 
+								  <!--<div class="form-group  " >
+									<label for="Post File1" class=" control-label col-md-4 text-left"> Post File1 </label>
+									<div class="col-md-6">
+									  <?php echo Form::text('post_file1', $row['post_file1'],array('class'=>'form-control', 'placeholder'=>'',   )); ?> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Post File2" class=" control-label col-md-4 text-left"> Post File2 </label>
+									<div class="col-md-6">
+									  <?php echo Form::text('post_file2', $row['post_file2'],array('class'=>'form-control', 'placeholder'=>'',   )); ?> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					-->
+								  <div class="form-group  " >
+									<label for="Name" class=" control-label col-md-4 text-left"> Tên </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php echo $row['name']; ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Phone" class=" control-label col-md-4 text-left"> Điện thoại </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php echo $row['phone']; ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <div class="form-group  " >
+									<label for="Address" class=" control-label col-md-4 text-left"> Địa chỉ </label>
+									<div class="col-md-6">
+									  <input type="text" readonly value="<?php echo $row['address']; ?>" class="form-control" />
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								   <div class="form-group  " >
+									<label for="Post Note" class=" control-label col-md-4 text-left"> Ghi chú </label>
+									<div class="col-md-6">
+									  <textarea name='post_note' rows='2' id='post_note' class='form-control '  ><?php echo $row['post_note']; ?></textarea> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div> 					
+								  <?php if($row['active'] == 0): ?>
+								  <div class="form-group  " >
+									<label for="Status" class=" control-label col-md-4 text-left"> Kích hoạt </label>
+									<div class="col-md-6">
+									  <label class='checked'>
+										<input type='radio' name='active' value ='0' required <?php if($row['active'] == '0' || $row['active'] == ''): ?> checked="checked" <?php endif; ?> > UnActive </label>
+										<label class='checked'>
+										<input type='radio' name='active' value ='1' required <?php if($row['active'] == '1'): ?> checked="checked" <?php endif; ?> > Active </label> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div>
+								  <?php else: ?>if
+									<div class="form-group  " >
+									<label for="Status" class=" control-label col-md-4 text-left"> Trạng thái </label>
+									<div class="col-md-6">
+									  <label class='checked'>
+										<input type='radio' name='status' value ='0' required <?php if($row['status'] == '0' || $row['status'] == ''): ?> checked="checked" <?php endif; ?> > Ẩn </label>
+										<label class='checked'>
+										<input type='radio' name='status' value ='1' required <?php if($row['status'] == '1'): ?> checked="checked" <?php endif; ?> > Hiện </label> 
+									 </div> 
+									 <div class="col-md-2">
+									 	
+									 </div>
+								  </div>
+								  <?php endif; ?>
+								   </fieldset>
+			</div>
+			
+			
+			<div style="clear:both"></div>	
+				
+			  <div class="form-group">
+				<label class="col-sm-4 text-right">&nbsp;</label>
+				<div class="col-sm-8">	
+				<input type="submit" name="apply" class="btn btn-info" value="<?php echo Lang::get('core.sb_apply'); ?> " />
+				<input type="submit" name="submit" class="btn btn-primary" value="<?php echo Lang::get('core.sb_save'); ?>  " />
+				<button type="button" onclick="location.href='<?php echo URL::to('post?md='.$masterdetail["filtermd"].$trackUri); ?>' " id="submit" class="btn btn-success ">  <?php echo Lang::get('core.sb_cancel'); ?> </button>
+				</div>	  
+		
+			  </div> 
+		 
+		 <?php echo Form::close(); ?>
+		</div>
+	</div>	
+</div>	
+</div>			 
+   <script type="text/javascript">
+	$(document).ready(function() { 
+		 
+	});
+	</script>		 

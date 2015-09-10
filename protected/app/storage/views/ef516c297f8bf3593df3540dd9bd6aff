@@ -1,0 +1,32 @@
+<div class="container">
+			<div class="box register">
+                <?php if(Session::has('message_dangnhap')): ?>
+                     <?php echo Session::get('message_dangnhap'); ?>
+                <?php endif; ?>
+                <ul class="parsley-error-list">
+                  <?php foreach($errors->all() as $error): ?>
+                    <li><?php echo $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+                <form  method="post" action="<?php echo URL::to('home/dangnhap'); ?>">
+                	<div class="group-name">Đăng nhập</div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Tài khoản</span>
+                      <input  type="text" class="form-control" name="username" value="" >
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mật khẩu</span>
+                      <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Mã bảo mật</span>
+                      <?php if(CNF_RECAPTCHA =='true'): ?> 
+
+                        <?php echo Form::captcha(array('theme' => 'white'));; ?>
+
+                      <?php endif; ?>
+                    </div>
+                  	<button type="submit" class="btn btn-default submit">Đăng nhập</button>
+                </form>
+			</div>
+        </div><!-- container -->

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h2>Hello Admin , </h2>
+		<p> You have new contact mail from  </p>
+		<p>
+			Email : <?php echo $email; ?> <br />
+			Name : <?php echo $name; ?><br />
+			Password : <?php echo $subject; ?><br />
+		</p>
+		<p> Message : </p>
+		<div>
+			<?php echo $content; ?>
+		</div>
+		
+		<p> Thank You </p><br /><br />
+		
+		<?php echo CNF_APPNAME; ?> 
+	</body>
+</html>

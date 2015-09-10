@@ -1,0 +1,45 @@
+<div class="container">
+        	<div id="wrap-content">
+            	<!--<ol class="breadcrumb">
+                  <li><a href="#">Trang chủ</a></li>
+                  <li><a href="#">Hành khách</a></li>
+                </ol>-->
+            	<div class="box post-detail">
+                    <div class="img"><?php if($post->post_typecustomer == 1): ?><img src="<?php echo asset('sximo/themes/uber/image/guest-icon.png'); ?>"><?php else: ?><img src="<?php echo asset('sximo/themes/uber/image/driver-icon.png'); ?>"><?php endif; ?></div>
+                    <div class="title"><?php echo $post->post_subject; ?></div>
+                    <div class="trip clearfix">
+                        <span class="start-place">Nơi đi : <b><?php echo SiteHelpers::getNameaddress($post->post_districtfrom,'district','districtid'); ?>, <?php echo SiteHelpers::getNameaddress($post->post_provincefrom,'province','provinceid'); ?></b></span>
+                        <span class="end-place">Nơi đến : <b><?php echo SiteHelpers::getNameaddress($post->post_districtto,'district','districtid'); ?>, <?php echo SiteHelpers::getNameaddress($post->post_provinceto,'province','provinceid'); ?></b></span>
+                        <span class="start-date">Ngày xuất phát : <b><?php echo date('d-m-Y',$post->post_datestar); ?></b></span>
+                    </div><!-- trip -->
+                    <div class="detail clearfix">
+                        <table>
+                        	<tr><td>Nơi xuất phát</td><td><?php echo $post->post_addressfrom; ?>, <?php echo SiteHelpers::getNameaddress($post->post_districtfrom,'district','districtid'); ?>, <?php echo SiteHelpers::getNameaddress($post->post_provincefrom,'province','provinceid'); ?></td></tr>
+                            <tr><td>Nơi đến</td><td><?php echo $post->post_addressto; ?>, <?php echo SiteHelpers::getNameaddress($post->post_districtto,'district','districtid'); ?>, <?php echo SiteHelpers::getNameaddress($post->post_provinceto,'province','provinceid'); ?></td></tr>
+                            <tr><td>Ngày xuất phát</td><td><?php echo date('d-m-Y',$post->post_datestar); ?></td></tr>
+                            <tr><td>Loại xe</td><td><?php echo $post->post_typecar; ?></td></tr>
+                            <tr><td>Giá</td><td><?php if($post->post_price == 0): ?> Thỏa thuận <?php else: ?> <?php echo number_format($post->post_price,0,',','.'); ?> VNĐ <?php endif; ?></td></tr>
+                            <tr><td>Ghi chú thêm</td><td><?php echo $post->post_note; ?></td></tr>
+                        </table>
+                    </div><!-- detail -->
+                    <?php if($post->post_file1 != '' || $post->post_file2 != ''): ?>
+                    <div class="attached-file"> File đính kèm <?php if($post->post_file1 != ''): ?> <a href="<?php echo URL::to(''); ?>/home/viewfile/<?php echo $post->post_file1; ?>">Tập tin đính kèm</a> <?php endif; ?> <?php if($post->post_file2 != ''): ?> <a href="<?php echo URL::to(''); ?>/home/viewfile/<?php echo $post->post_file2; ?>">Tập tin đính kèm</a> <?php endif; ?></div>
+                    <?php endif; ?>
+                </div><!-- guest-list -->
+            </div><!-- wrap-content -->
+            <div id="wrap-right">
+            	<div class="box user-info">
+                	<div class="box-heading">Thông tin liên hệ</div>
+                    <div class="box-content">
+                    	<h2 class="username"><a href="javascript:"><?php echo $customer->name; ?></a></h2>
+                        <div class="avatar"><img src="<?php if($customer->image == ''): ?> <?php echo asset('sximo/themes/uber/image/no-avatar.jpg'); ?> <?php else: ?> <?php echo URL::to(''); ?>/uploads/customer/thumb/<?php echo $customer->image; ?> <?php endif; ?>"></div>
+                        <ul class="info">
+                        	<li><div class="heading"><span>Tên</span></div><?php echo $customer->name; ?></li>
+                            <li><div class="heading"><span>Số điện thoại</span></div><?php echo $customer->phone; ?></li>
+                            <li><div class="heading"><span>Địa chỉ</span></div><?php echo $customer->address; ?>, Phường <?php echo SiteHelpers::getNameaddress($customer->wardid,'ward','wardid'); ?>,<?php echo SiteHelpers::getNameaddress($customer->districtid,'district','districtid'); ?>, <?php echo SiteHelpers::getNameaddress($customer->provinceid,'province','provinceid'); ?></li>
+                        </ul>
+                    </div><!-- box-content -->
+                </div><!-- filter -->
+            </div><!-- wrap-right -->
+
+        </div><!-- container -->

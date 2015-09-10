@@ -1,0 +1,48 @@
+
+<div class="container">
+			<div class="box register">
+                <h2>Thông tin cá nhân !</h2>
+                  <input type="hidden"/>
+                	<div class="group-name">Thông tin tài khoản</div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Tài khoản</span>
+                      <input  type="text" readonly class="form-control" name="username" value="<?php echo $input['username']; ?>" >
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Email</span>
+                      <input type="text" readonly class="form-control" name="email" value="<?php echo $input['email']; ?>">
+                    </div>
+                    <div class="group-name">Thông tin cá nhân</div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Tên của bạn</span>
+                      <input type="text" readonly class="form-control" name="name" value="<?php echo $input['name']; ?>">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Giới tính</span>
+                      <input type="text" readonly class="form-control" name="sex" value=" <?php if($input['sex'] == 1): ?> Nam <?php else: ?> Nữ <?php endif; ?>">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Số điện thoại</span>
+                      <input type="text" readonly class="form-control" name="phone" value="<?php echo $input['phone']; ?>">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">Số dư tài khoản</span>
+                      <input type="text" readonly class="form-control" name="phone" value="<?php echo number_format($input['money'],0,',','.'); ?> VNĐ">
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon">CMND</span>
+                      <input type="text" readonly class="form-control" name="address" value="<?php echo $input['cmnd']; ?>">
+                    </div>
+                    
+                    <div class="input-group">
+                      <span class="input-group-addon">Ảnh đại diện</span>
+                      <?php if($input['image'] != ""): ?>
+                        <img src="<?php echo URL::to(''); ?>/uploads/customer/thumb/<?php echo $input['image']; ?>">
+                      <?php else: ?>if
+                        <img src="<?php echo asset('sximo/themes/uber/image/no-avatar.jpg'); ?>">
+                      <?php endif; ?>
+                    </div>
+                   
+			</div>
+        </div><!-- container -->
+        

@@ -1,0 +1,13 @@
+<?php /**/ $items = SiteHelpers::saleProducts() /**/ ?>
+<?php if(count($items) > 0): ?>
+      <div class="box">
+        <div class="box-heading">Specials</div>
+        <div class="box-content">
+          <div class="box-product">
+            <?php foreach($items as $item): ?>
+              <?php echo SiteHelpers::templateProductSide($item); ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+<?php endif; ?>

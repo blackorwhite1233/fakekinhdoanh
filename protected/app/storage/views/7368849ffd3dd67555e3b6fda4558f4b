@@ -1,0 +1,94 @@
+
+<div class="page-content row">
+    <!-- Page header -->
+    <div class="page-header ">
+      <div class="page-title">
+        <h3> <?php echo Lang::get('core.t_module'); ?> <small><?php echo Lang::get('core.t_modulesmall'); ?></small></h3>
+      </div>
+    </div>
+	<div class="page-content-wrapper">
+	<div class="ribon-sximo">
+	</div>
+	
+
+
+	
+
+
+		
+	<?php if(Session::has('message')): ?>
+		   <?php echo Session::get('message'); ?>
+	<?php endif; ?>	
+	      <div class="white-bg p-sm m-b unziped" style=" border:solid 1px #ddd; display:none;">
+		   <?php echo Form::open(array('url'=>'module/install/', 'class'=>'breadcrumb-search','files' => true , 'parsley-validate'=>'','novalidate'=>' ')); ?>
+			<h3>Select File ( Module zip installer ) </h3>
+            <p>  <input type="file" name="installer" required style="float:left;">  <button type="submit" class="btn btn-primary btn-xs" style="float:left;"  ><i class="icon-upload"></i> Install</button></p>
+            </form>
+			<div class="clr"></div>
+          </div>
+		  	
+	
+	 <?php echo Form::open(array('url'=>'module/package#', 'class'=>'form-horizontal' ,'ID' =>'SximoTable' )); ?>
+	<div class="table-responsive ibox-content" style="min-height:400px;">
+	<?php if(count($rowData) >=1): ?> 
+		<table class="table table-striped ">
+			<thead>
+			<tr>
+				<th><?php echo Lang::get('core.btn_action'); ?></th>					
+				<!--<th><input type="checkbox" class="checkall" /></th>-->
+				<th><?php echo Lang::get('core.btn_module'); ?></th>
+				<th><?php echo Lang::get('core.btn_controller'); ?></th>
+				<th><?php echo Lang::get('core.btn_database'); ?></th>
+		
+			</tr>
+			</thead>
+        <tbody>
+		<?php foreach ($rowData as $row): ?>
+			<tr>		
+				<td>
+				<div class="btn-group">
+				<button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown">
+				<I class="icon-cogs"></I> <span class="caret"></span>
+				</button>
+					<ul style="display: none;" class="dropdown-menu icons-right">
+						<li><a href="<?php echo URL::to($row->module_name); ?>"><i class="icon-grid"></i> <?php echo Lang::get('core.btn_view'); ?> Module </a></li>
+						<li><a href="<?php echo URL::to($module.'/config/'.$row->module_name); ?>"><i class="icon-pencil3"></i> <?php echo Lang::get('core.btn_edit'); ?></a></li>
+					</ul>
+				</div>					
+				</td>
+				<!--<td>-->
+				 <?php if($type !='core'): ?>
+				<!--<input type="checkbox" class="ids" name="id[]" value="<?php echo $row->module_id; ?>" /> <?php endif; ?></td>-->
+				<td><?php echo $row->module_title; ?> </td>
+				<td><?php echo $row->module_name; ?> </td>
+				<td><?php echo $row->module_db; ?> </td>
+			</tr>
+		<?php endforeach; ?>	
+	</tbody>		
+	</table>
+	
+	<?php else: ?>
+		
+		<p class="text-center" style="padding:50px 0;"><?php echo Lang::get('core.norecord'); ?> 
+		<br /><br />
+		<a href="<?php echo URL::to('module/add'); ?>" class="btn btn-default "><i class="icon-plus-circle2"></i> New module </a>
+		 </p>	
+	<?php endif; ?>
+	</div>	
+	<?php echo Form::close(); ?>
+	</div>	
+
+</div>	  
+	  
+  <script language='javascript' >
+  jQuery(document).ready(function($){
+    $('.post_url').click(function(e){
+      e.preventDefault();
+      if( ( $('.ids',$('#SximoTable')).is(':checked') )==false ){
+        alert( $(this).attr('data-title') + " not selected");
+        return false;
+      }
+      $('#SximoTable').attr({'action' : $(this).attr('href') }).submit();
+    })
+  })
+  </script>	  
