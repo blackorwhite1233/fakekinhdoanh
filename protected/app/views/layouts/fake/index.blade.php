@@ -61,7 +61,7 @@
         <div class="member_area">
             @if(Session::has('customer'))
                 {{--*/ $ses_cus = Session::get('customer'); /*--}}
-                <a class="username" href="#"><img src="{{ asset('sximo/themes/fake/images/avatar.jpg')}}">Tên người dùng</a>
+                <a class="username" href="{{URL::to('thong-tin-thanh-vien.html')}}"><img src="@if($ses_cus['image'] == "") {{ asset('sximo/themes/fake/images/avatar.jpg')}} @else {{URL::to('uploads/customer/thumb')}}/{{$ses_cus['image']}} @endif">{{$ses_cus['username']}}</a>
                 <a href="{{URL::to('dang-san-pham.html')}}" class="product_submit">Đăng sản phẩm</a>
             @else
                 <a href="#" class="login" data-toggle="modal" data-target="#login-box">Đăng nhập</a>
@@ -129,8 +129,8 @@
       </div>
       <div class="modal-footer">
         <ul>
-            <li>Quên mật khẩu? <a href="#">Lấy lại mật khẩu</a></li>
-            <li>Chưa có tài khoản? <a href="#">Đăng ký</a></li>
+            <li>Quên mật khẩu? <a href="{{URL::to('forgotpass.html')}}">Lấy lại mật khẩu</a></li>
+            <li>Chưa có tài khoản? <a href="{{URL::to('dang-ky.html')}}">Đăng ký</a></li>
         </ul>
       </div>
       <script type="text/javascript">

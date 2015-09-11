@@ -1,28 +1,40 @@
-<div class="container">
-			<div class="box register">
-                @if(Session::has('message_forgotpass'))
-                     {{ Session::get('message_forgotpass') }}
-                @endif
-                <ul class="parsley-error-list">
-                  @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-                <form  method="post" action="{{URL::to('home/forgotpass')}}">
-                	<div class="group-name">Quên mật khẩu</div>
-                    <div class="input-group">
-                      <span class="input-group-addon">Email</span>
-                      <input  type="text" class="form-control" name="email" value="" >
-                    </div>
-                    <div class="input-group">
-                      <span class="input-group-addon">Mã bảo mật</span>
-                      @if(CNF_RECAPTCHA =='true') 
+<div id="body_wrapper">
+  <div class="container">
+        <div id="main">
+          <div class="block">
+              <div class="block_heading"><h2>Lấy lại mật khẩu</h2></div>
+                <div class="block_content">
+                  <div class="product_form">
+                        @if(Session::has('message_forgotpass'))
+                             {{ Session::get('message_forgotpass') }}
+                        @endif
+                        <ul class="parsley-error-list">
+                          @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                          @endforeach
+                        </ul>
+                        <form method="post" action="{{URL::to('')}}/home/forgotpass">
+                            <div class="input-group">
+                              <span class="input-group-addon">Email <font color="red">*</font></span>
+                              <input type="text" class="form-control" name="email" value="">
+                            </div>
+                            @if(CNF_RECAPTCHA =='true')
+                            <div class="box info-user">
+                              <label>Mã bảo mật</label>
+                              <table>
+                                  <tr><td>  
 
-                        {{ Form::captcha(array('theme' => 'white')); }}
+                                {{ Form::captcha(array('theme' => 'white')); }}
 
-                      @endif
-                    </div>
-                  	<button type="submit" class="btn btn-default submit">Gửi</button>
-                </form>
-			</div>
-        </div><!-- container -->
+                              </td></tr>
+                                </table>
+                            </div>
+                            @endif
+                            <button type="submit" class="btn btn-default submit">Lấy lại mật khẩu</button>
+                        </form>
+                  </div><!-- product_form -->
+                </div><!-- block_content -->
+            </div><!-- block -->
+      </div><!-- main -->
+    </div><!-- container -->
+</div><!-- body_wrapper -->

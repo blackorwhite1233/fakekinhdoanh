@@ -297,26 +297,28 @@ class HomeController extends BaseController {
 			return Redirect::to('dang-ky.html');
 		}
 		$rules = $rules=array(
-			"email" => "required|email",
-			"username" => "required|alpha_num|between:5,20",
-			"name" => "required|between:5,50",
-			"phone" => "required|Numeric",
-			"cmnd" => "required|Numeric",
-			//"provinceid" => "required",
-			//"districtid" => "required",
-			//"wardid" => "required",
-			'file'	=>'mimes:gif,png,jpg,jpeg|max:20000',
+			//'username'	=>'',
+			'name'	=>'',
+			//'sex'	=>'1',
+			'phone'	=>'',
+			//'email'	=>'',
+			//'cmnd'	=>'',
+			//'provinceid'	=>'79',
+			//'districtid'	=>'',
+			//'wardid'	=>'',
+			'link_website'	=>'',
+			'link_fanpage'	=>'',
 		);
 		if(CNF_RECAPTCHA =='true') $rules['recaptcha_response_field'] = 'required|recaptcha';
 		$validator = Validator::make(Input::all(), $rules);
 		if ($validator->passes()) {
+			$ses_cus = Session::get('customer');
 			$data['name'] = Input::get('name');
 			$data['phone'] = Input::get('phone');
 			//$data['address'] = Input::get('address');
 			$data['cmnd'] = Input::get('cmnd');
-			$data['provinceid'] = Input::get('provinceid');
-			$data['districtid'] = Input::get('districtid');
-			$data['wardid'] = Input::get('wardid');
+			$data['link_website'] = Input::get('link_website');
+			$data['link_fanpage'] = Input::get('link_fanpage');
 			if(!is_null(Input::file('file')))
 			{
 				$file = Input::file('file');
@@ -330,17 +332,16 @@ class HomeController extends BaseController {
 				    $orgFile = $destinationPath.'/'.$newfilename;
 				    $thumbFile = $destinationPath.'/thumb/'.$newfilename;
 				    SiteHelpers::resizewidth("193",$orgFile,$thumbFile);
-				    $ses_cus = Session::get('customer');
 				    if($ses_cus['image'] != ''){
 				    	@unlink(ROOT .'/uploads/customer/'.$ses_cus['image']);
 				    	@unlink(ROOT .'/uploads/customer/thumb/'.$ses_cus['image']);
 				    }
 				}
 			}
-			DB::table('customer')->where('email','=',Input::get('email'))->where('username','=',Input::get('username'))->update($data);
+			DB::table('customer')->where('email','=',$ses_cus['email'])->where('username','=',$ses_cus['username'])->update($data);
 			return Redirect::to('thong-bao.html')->with('message', SiteHelpers::alert('success','Thay đổi thông tin thành công !'));
 		}else{
-			return Redirect::to('change-info.html')->with('message_changeinfo', SiteHelpers::alert('error','Vui lòng xác nhận các thông tin bên dưới'))->withErrors($validator)->withInput();
+			return Redirect::to('thong-tin-thanh-vien.html')->with('message_changeinfo', SiteHelpers::alert('error','Vui lòng xác nhận các thông tin bên dưới'))->withErrors($validator)->withInput();
 		}
 	}
 
