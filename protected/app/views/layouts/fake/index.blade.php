@@ -26,30 +26,13 @@
 <body>
 <div id="header">
     <div class="container">
-        <div id="logo"><a href="#"><img src="{{ asset('sximo/themes/fake/images/logo.png')}}"></a></div>
+        <div id="logo"><a href="{{URL::to('')}}"><img src="{{ asset('sximo/themes/fake/images/logo.png')}}"></a></div>
         <div class="cat_list">
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Danh mục sản phẩm <span class="caret"></span>
               </button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Điện thoại, viễn thông</a></li>
-                <li><a href="#">Máy tính, linh kiện</a></li>
-                <li><a href="#">Điện tử, điện máy</a></li>
-                <li><a href="#">Máy ảnh, máy quay</a></li>
-                <li><a href="#">Ô tô, xe máy, xe đạp</a></li>
-                <li><a href="#">Thời trang, phụ kiện</a></li>
-                <li><a href="#">Mẹ & Bé</a></li>
-                <li><a href="#">Sức khỏe, sắc đẹp</a></li>
-                <li><a href="#">Đồ dùng sinh hoạt</a></li>
-                <li><a href="#">Nội thất, ngoại thất</a></li>
-                <li><a href="#">Sách, văn phòng, quà tặng</a></li>
-                <li><a href="#">Thể thao</a></li>
-                <li><a href="#">Công nghiệp, Xây dựng</a></li>
-                <li><a href="#">Dịch vụ, giải trí, du lịch</a></li>
-                <li><a href="#">Thực phẩm, đồ uống</a></li>
-                <li><a href="#">Bất động sản</a></li>
-              </ul>
+              @include('layouts/fake/danhmuctop', array('pos' => 'top'))
             </div>
         </div><!-- cat_list -->
         <div class="search">
@@ -61,7 +44,7 @@
         <div class="member_area">
             @if(Session::has('customer'))
                 {{--*/ $ses_cus = Session::get('customer'); /*--}}
-                <a class="username" href="{{URL::to('thong-tin-thanh-vien.html')}}"><img src="@if($ses_cus['image'] == "") {{ asset('sximo/themes/fake/images/avatar.jpg')}} @else {{URL::to('uploads/customer/thumb')}}/{{$ses_cus['image']}} @endif">{{$ses_cus['username']}}</a>
+                <a class="username" href="{{URL::to('san-pham-da-dang.html')}}"><img src="@if($ses_cus['image'] == "") {{ asset('sximo/themes/fake/images/avatar.jpg')}} @else {{URL::to('uploads/customer/thumb')}}/{{$ses_cus['image']}} @endif">{{$ses_cus['username']}}</a>
                 <a href="{{URL::to('dang-san-pham.html')}}" class="product_submit">Đăng sản phẩm</a>
             @else
                 <a href="#" class="login" data-toggle="modal" data-target="#login-box">Đăng nhập</a>
@@ -147,7 +130,7 @@
                                     var uri = "{{$_SERVER['REQUEST_URI']}}";
                                     window.location.href = "{{URL::to('')}}"+uri;
                                 }else{
-                                    $(".error_login").html('Sai tên mật khẩu hoặc mật khẩu !');
+                                    $(".error_login").html('Sai tên đăng nhập hoặc mật khẩu !');
                                 }
                               });
                         }
