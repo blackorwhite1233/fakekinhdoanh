@@ -184,7 +184,6 @@ class NcategoriesController extends BaseController {
 				    }
 				}
 			}
-			$data['postion'] = Input::get('postion');
 			$data['CategoryName'] = Input::get('CategoryName');
 			$data['Description'] = Input::get('Description');
 			$data['lang'] = $this->lang;

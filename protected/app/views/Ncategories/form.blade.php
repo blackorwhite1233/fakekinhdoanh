@@ -50,15 +50,6 @@
 									 </div>
 								  </div> 					
 								  <div class="form-group  " >
-									<label for="CategoryName" class=" control-label col-md-4 text-left"> Vị trí </label>
-									<div class="col-md-6">
-									  {{ Form::text('postion', $row['postion'],array('class'=>'form-control', 'placeholder'=>'Vị trí từ thấp đến cao',   )) }} 
-									 </div> 
-									 <div class="col-md-2">
-									 	
-									 </div>
-								  </div> 					
-								  <div class="form-group  " >
 									<label for="Description" class=" control-label col-md-4 text-left"> {{ Lang::get('core.category_des') }} </label>
 									<div class="col-md-6">
 									  {{ Form::textarea('Description', $row['Description'],array('class'=>'form-control', 'placeholder'=>'Nội dung mô tả về danh mục.',   )) }} 

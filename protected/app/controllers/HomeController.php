@@ -1027,13 +1027,8 @@ class HomeController extends BaseController {
 		if(CNF_FRONT =='false' && Session::get('uid') !=1) :
 			if(!Auth::check())  return Redirect::to('user/login');
 		endif; 
-		$data['sp_banchay'] = Post::getPostNew(4);
-		$data['sp_muanhieu'] = Post::getPostBuy(4);
-
-		$data['adver_1'] = Advertise::getAdvertiseHome(1);
-		$data['adver_2'] = Advertise::getAdvertiseHome(2);
-
-		$this->data['pageTitle'] = 'Trang chu';
+		$data['items'] = DB::table('products')->where('lang','=',$this->lang)->where('status','=','1')->orderby('created','desc')->limit('20')->get();
+		$this->data['pageTitle'] = 'Home';
 		$this->data['pageNote'] = 'Welcome To Our Site';
 		//$this->data['breadcrumb'] = 'inactive';			
 		$page = 'pages.template.home';
@@ -1121,16 +1116,15 @@ class HomeController extends BaseController {
 		$seo['pageNote'] = $cat != NULL ? $cat->CategoryName :'Welcome To Our Site';
 		$html = SiteHelpers::renderHtml('pages.template.productdetail');
 		$this->layout->nest('content',$html,$data)->with('page', $seo);
-	}*/
+	}
 
 	public function categorydetail($alias = '',$id = ''){
 		
 		$cat = Ncategories::detail($id);
-		$sortget = ( Input::get('sort') != '') ? Input::get('sort') : 'post_id-desc';
+		$sortget = ( Input::get('sort') != '') ? Input::get('sort') : 'ProductID-desc';
 		list($sort,$order) = explode('-', $sortget);
-		$filter = " AND status = 1 AND post_category = $id ";
-		$page = (!is_null(Input::get('page')) && Input::get('page') != '') ? Input::get('page') : 1;
-
+		$filter = " AND status = 1 AND CategoryID = $id AND lang = '$this->lang'";
+		$page = (!is_null(Input::get('page') && Input::get('page') != '')) ? Input::get('page') : 1;
 		$params = array(
 			'page'		=> $page ,
 			'limit'		=> (!is_null(Input::get('numpage')) ? filter_var(Input::get('numpage'),FILTER_VALIDATE_INT) : $this->perpage ) ,
@@ -1139,7 +1133,7 @@ class HomeController extends BaseController {
 			'params'	=> $filter,
 			//'global'	=> (isset($this->access['is_global']) ? $this->access['is_global'] : 0 )
 		);
-		$model = new Post();
+		$model = new Nproducts();
 		$results = $model->getRows( $params );
 		// Build pagination setting
 		$page = $page >= 1 && filter_var($page, FILTER_VALIDATE_INT) !== false ? $page : 1;	
@@ -1156,7 +1150,7 @@ class HomeController extends BaseController {
 
 		$html = SiteHelpers::renderHtml('pages.template.category');
 		$this->layout->nest('content',$html,$data);
-	}
+	}*/
 	
 	public function  postContactform()
 	{

@@ -35,12 +35,4 @@ class Post extends BaseModel  {
 		return $array;
 	}
 
-	public static function getPostNew($limit=4){
-		return DB::table("post")->where("status","=",1)->where("active","=",1)->orderBy('post_id','desc')->limit($limit)->get();
-	}
-
-	public static function getPostBuy($limit=4){
-		return DB::table("post")->where("status","=",1)->where("active","=",1)->orderBy('post_id','desc')->limit($limit)->get();
-	}
-
 }

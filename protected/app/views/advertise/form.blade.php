@@ -21,9 +21,9 @@
 		<li><a href="{{ URL::to('advertise?md='.$filtermd) }}">{{ $pageTitle }}</a></li>
         <li class="active">{{ Lang::get('core.addedit') }} </li>
       </ul>
+	  	  
     </div>
- 	<input type="hidden" id="width_tmp" value="500">
- 	<input type="hidden" id="height_tmp" value="220">
+ 
  	<div class="page-content-wrapper">
 	<div class="panel-default panel">
 		<div class="panel-body">
@@ -66,7 +66,7 @@
 									  <label class='checked'>
 										<input type='radio' name='position' value ='0' required @if($row['position'] == '0' || $row['position'] == '') checked="checked" @endif > Trang chủ </label>
 										<label class='checked'>
-										<input type='radio' name='position' value ='1' required @if($row['position'] == '1') checked="checked" @endif > Cột trái </label> 
+										<input type='radio' name='position' value ='1' required @if($row['position'] == '1') checked="checked" @endif > Cột phải </label> 
 									 </div> 
 									 <div class="col-md-2">
 									 	

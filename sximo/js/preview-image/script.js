@@ -3,8 +3,8 @@ $(document).ready(function() {
 	/*****************************
 		Variables
 	*****************************/
-	var imgWidth = $("#width_tmp").val() ? $("#width_tmp").val() : 180,
-		imgHeight = $("#height_tmp").val() ? $("#height_tmp").val() : 180,
+	var imgWidth = 180,
+		imgHeight = 180,
 		zindex = 0;
 		dropzone = $('#droparea'),
 		uploadBtn = $('#uploadbtn'),
@@ -12,6 +12,7 @@ $(document).ready(function() {
 
 		btnmultiimage = $('#btnmultiimage');
 		defaultUploadBtn_multi = $('#uploadmt');
+		
 
 	/*****************************
 		Events Handler

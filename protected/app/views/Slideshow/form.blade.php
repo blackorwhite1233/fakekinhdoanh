@@ -23,8 +23,7 @@
       </ul>
 	  	  
     </div>
- 	<input type="hidden" id="width_tmp" value="1140">
- 	<input type="hidden" id="height_tmp" value="220">
+ 
  	<div class="page-content-wrapper">
 	<div class="panel-default panel">
 		<div class="panel-body">

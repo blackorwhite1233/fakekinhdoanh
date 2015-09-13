@@ -172,7 +172,7 @@ class SlideshowController extends BaseController {
 				    $data['slideshow_image'] = $newfilename;
 				    $orgFile = $destinationPath.'/'.$newfilename;
 				    $thumbFile = $destinationPath.'/thumb/'.$newfilename;
-				    SiteHelpers::resizewidth("1140",$orgFile,$thumbFile);
+				    SiteHelpers::resizewidth("980",$orgFile,$thumbFile);
 				    if(Input::get('slideshow_id') != "")
 				    {
 				    	$data_old = $this->model->getRow(Input::get('slideshow_id'));

@@ -195,9 +195,9 @@ class SiteHelpers
 		return $rs."**";
 	}
 
-	public static function getAdvertise(){
-
-		$data = Advertise::where('position','=',1)->where('status','=',1)->limit(5)->get();
+	public static function getAdvertise($type = 1){
+		$limit = $type == 0 ? 2 : 5;
+		$data = Advertise::where('position','=',$type)->where('status','=',1)->limit($limit)->get();
 		return $data;
 	}
 
@@ -227,10 +227,10 @@ class SiteHelpers
 		return $user->name;
 	}
 
-	public static function templatePost($data = "",$type = 'user')
+	public static function templatePost($data = "",$type = 0)
 	{
 		$image = $data->post_image != '' ?  URL::to('')."/uploads/post/thumb/".$data->post_image : '';
-		$link = $type == 'user' ? URL::to('')."/san-pham/".$data->post_slug."-".$data->post_id.".html" : $data->post_link;
+		$link = URL::to('')."/san-pham/".$data->post_slug."-".$data->post_id.".html";
 		$price = number_format($data->post_price,0,',','.');
 		$promotion = $data->post_price_promotion == 0 ? '' : '<div class="price_old">'.number_format($data->post_price_promotion,0,',','.').' VNĐ</div>';
 		$output = '';
@@ -360,7 +360,7 @@ class SiteHelpers
 
 	public static function GetCategories(){
 		$lang = Session::get('lang') == '' ? CNF_LANG : Session::get('lang');
-		$cat = DB::table('categories')->where("lang",'=', $lang)->where("status",'=', '1')->orderBy('postion','desc')->get();
+		$cat = DB::table('categories')->where("lang",'=', $lang)->where("status",'=', '1')->get();
 		return $cat;
 	}
 

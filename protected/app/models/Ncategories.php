@@ -36,7 +36,6 @@ class Ncategories extends BaseModel  {
 		$array = array(
 			"CategoryID" => array("label"=>Lang::get('core.table_id'), "type"=>"text", "name"=>"CategoryID", "value" => ""),
 			"CategoryName" => array("label"=>Lang::get('core.table_name'), "type"=>"text", "name"=>"CategoryName", "value" => ""),
-			"postion" => array("label"=>'Vị trí', "type"=>"text", "name"=>"postion", "value" => ""),
 			"created" => array("label"=>Lang::get('core.table_created'), "type"=>"date", "name"=>"created", "value" => ""),
 			"status" => array("label"=>Lang::get('core.table_status'), "type"=>"radio", "name"=>"status", "value" => "","option"=>array("0"=>Lang::get('core.disable'),"1"=>Lang::get('core.enable'))),
 			//"UnitPrice" => array("label"=>"Price", "type"=>"text", "name"=>"UnitPrice", "value" => ""),
