@@ -174,11 +174,11 @@ class AdvertiseController extends BaseController {
 				    $orgFile = $destinationPath.'/'.$newfilename;
 				    $thumbFile = $destinationPath.'/thumb/'.$newfilename;
 					if(Input::get('position') == 1){
-						//SiteHelpers::resizewidth("455",$orgFile,$thumbFile);
-						SiteHelpers::resize_crop_image('235' , '235' , $orgFile ,	 $thumbFile);
+						SiteHelpers::resizewidth("213",$orgFile,$thumbFile);
+						//SiteHelpers::resize_crop_image('235' , '235' , $orgFile ,	 $thumbFile);
 					}else{
 						//SiteHelpers::resizewidth("235",$orgFile,$thumbFile);
-						SiteHelpers::resize_crop_image('455' , '298', $orgFile ,	 $thumbFile);
+						SiteHelpers::resize_crop_image('892' , '111', $orgFile ,	 $thumbFile);
 					}
 				    
 					if(Input::get('advertise_id')){
